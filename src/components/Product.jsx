@@ -1,5 +1,5 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
-import styled from "styled-components"
+import styled from "styled-components";
 
 
 const Info = styled.div`
@@ -69,9 +69,9 @@ const Product = ({item}) => {
         <Circle/>
         <Image src={item.img}/>
         <Info>
-            <Icon>
-                <ShoppingCartOutlined/>
-            </Icon>
+                <Icon>
+                    <ShoppingCartOutlined/>
+                </Icon>
             <Icon>
                 <SearchOutlined/>
             </Icon>
