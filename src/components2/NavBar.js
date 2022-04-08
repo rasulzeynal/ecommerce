@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { AppBar,Box,Toolba,IconButton,Typography,Menu,
-Container,Avatar,Button,Tooltip,MenuItem } from '@material-ui/core';
-import {MenuIcon} from '@material-ui/icons';
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import styled from "styled-components"
+import MenuIcon from "@material-ui/icons/Menu";
+import { PersonOutlined, ShoppingCartOutlined } from '@material-ui/icons';
+import { AppBar,Box,Toolbar,IconButton,Typography,Menu,
+Container,Button, MuiThemeProvider,Badge} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+const pages = ['Home', 'Products', 'Blog'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -24,19 +26,19 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+
+  const MenuItem = styled.div`
+font-size: 14px;
+cursor: pointer;
+margin-left: 25px;
+color:black;
+`;
+
   return (
-    <AppBar position="static">
+    <MuiThemeProvider>
+    <AppBar position="static" style={{backgroundColor:"white"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-          >
-            LOGO
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -45,6 +47,7 @@ const ResponsiveAppBar = () => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              style={{color:"black"}}
             >
               <MenuIcon />
             </IconButton>
@@ -65,41 +68,46 @@ const ResponsiveAppBar = () => {
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
+              style={{marginTop:"45px"}}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Home</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Products</Typography>
+                </MenuItem>
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-          >
-            LOGO
-          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+                <Link to="/">
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                Home
               </Button>
-            ))}
+              </Link>
+              <Link to="/productlist">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Products
+              </Button>
+              </Link>
           </Box>
-
+            <MenuItem>
+            <Link to="/cart">
+            <Badge badgeContent={4} color="primary" style={{marginRight:"20px"}}>
+                <ShoppingCartOutlined  style={{fontSize:"25px"}}/>
+            </Badge>
+            </Link>
+            </MenuItem>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <PersonOutlined style={{fontSize:"30px",}}/>
               </IconButton>
-            </Tooltip>
-            <Menu
+            <Menu style={{marginTop:"45px",width:"400px"}}
               sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -114,17 +122,28 @@ const ResponsiveAppBar = () => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+            >   <Link to="/register">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Register</Typography>
                 </MenuItem>
-              ))}
+                </Link>
+                <Link to="/login">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Login</Typography>
+                </MenuItem>
+                </Link>
+                <Link to="/">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+                </Link>
             </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
+    </MuiThemeProvider>
+
   );
 };
 export default ResponsiveAppBar;

@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import NavBar from "../components/NavBar";
+import NavBar from "../components2/NavBar";
 import Announcement from "../components/Announcement";
 import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../Responsive";
+import { useLocation } from "react-router";
 
 const Container = styled.div`
 
@@ -34,6 +35,8 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = () => {
+  const location = useLocation();
+  console.log(location)
   return (
     <Container>
       <NavBar/>
