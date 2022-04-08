@@ -5,7 +5,6 @@ import { PersonOutlined, ShoppingCartOutlined } from '@material-ui/icons';
 import { AppBar,Box,Toolbar,IconButton,Typography,Menu,
 Container,Button, MuiThemeProvider,Badge} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-const pages = ['Home', 'Products', 'Blog'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

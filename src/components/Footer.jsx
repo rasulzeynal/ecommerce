@@ -1,6 +1,7 @@
-import { Facebook, Instagram, MailOutline, Twitter,Room,Phone } from "@material-ui/icons";
+import { Facebook, Instagram, Twitter,Room,Phone } from "@material-ui/icons";
 import styled from "styled-components";
 import {mobile} from "../Responsive";
+import { Link } from "react-router-dom";
 
 
 
@@ -14,11 +15,6 @@ const Left = styled.div`
     flex-direction: column;
     padding: 20px;
     
-`;
-const Logo = styled.h1``;
-
-const Desc = styled.p`
-    margin: 20px 0px;
 `;
 
 const SocialContainer = styled.div`
@@ -53,10 +49,6 @@ const List = styled.ul`
   flex-wrap: wrap;
 `;
 
-const ListItem = styled.li`
-  width: 50%;
-  margin-bottom: 10px;
-`;
 
 const Right = styled.div`
   flex: 1;
@@ -70,23 +62,13 @@ const ContactItem = styled.div`
   align-items: center;
 `;
 
-const Payment = styled.img`
-    width: 50%;
-`;
 
 
 const Footer = () => {
   return (
     <Container>
       <Left>
-          <Logo>SHOPPING</Logo>
-          <Desc>
-              Lorem ipsum dolor sit amet 
-              consectetur adipisicing elit. Soluta vero, qui nisi 
-              excepturi distinctio recusandae officia aperiam
-              porro dolore eveniet quidem temporibus
-              nobis explicabo! Voluptas quaerat eaque pariatur repudiandae quibusdam?
-          </Desc>
+          <Title>SOCIAL</Title>
           <SocialContainer>
               <SocialIcon color="3b5999">
                   <Facebook/>
@@ -100,18 +82,20 @@ const Footer = () => {
           </SocialContainer>
       </Left>
       <Center>
-          <Title>Useful Links</Title>
-          <List>
-            <ListItem>Home</ListItem>
-            <ListItem>Cart</ListItem>
-            <ListItem>Man Fashion</ListItem>
-            <ListItem>Woman Fashion</ListItem>
-            <ListItem>Accessories</ListItem>
-            <ListItem>My Account</ListItem>
-            <ListItem>Order Tracking</ListItem>
-            <ListItem>Wishlist</ListItem>
-            <ListItem>Wishlist</ListItem>
-            <ListItem>Terms</ListItem>
+          <Title style={{textAlign:"center"}}>Useful Links</Title>
+          <List >
+            <Link to="/" style={{textDecoration:"none",padding:"5px 15px",fontWeight:"bold",color:"black"}}>
+             Home
+            </Link>
+            <Link to="/products"  style={{textDecoration:"none",padding:"5px 15px",fontWeight:"bold",color:"black"}}>
+               Products
+            </Link>
+            <Link to="/cart" style={{textDecoration:"none",padding:"5px 15px",fontWeight:"bold",color:"black"}}>
+            Cart
+            </Link>
+            <Link to="/" style={{textDecoration:"none",padding:"5px 15px",fontWeight:"bold",color:"black"}}>
+            Account
+            </Link>
           </List>
       </Center>
       <Right>
@@ -122,10 +106,6 @@ const Footer = () => {
         <ContactItem>
           <Phone style={{marginRight:"10px"}}/> +994 000 11 22
         </ContactItem>
-        <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> test.testov@gmail.com
-        </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
     </Container>
   )
